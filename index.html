@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Anshu ❤️ Akash</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    text-align: center;
+    background: linear-gradient(to right, #ff9a9e, #fad0c4);
+    overflow: hidden;
+}
+
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.heart {
+    font-size: 90px;
+    cursor: pointer;
+    animation: beat 1s infinite;
+}
+
+@keyframes beat {
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+.hidden {
+    display: none;
+}
+
+h1 {
+    color: white;
+}
+
+.slideshow img {
+    width: 280px;
+    height: 350px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
+
+.caption {
+    margin-top: 10px;
+    font-size: 20px;
+    color: white;
+}
+</style>
+</head>
+
+<body>
+
+<div id="startScreen" class="center">
+    <div class="heart" onclick="start()">❤️</div>
+    <p style="color:white;">Click me</p>
+</div>
+
+<div id="welcomeScreen" class="center hidden">
+    <h1>anshu k dil me aapka swagat hai ❣️</h1>
+</div>
+
+<div id="slideshow" class="center hidden">
+    <img id="photo" src="">
+    <div class="caption">aree ye toh aap ho meri baby akash 😊</div>
+</div>
+
+<script>
+
+let images = [
+    "Pic1.jpg",
+    "Pic2.jpg",
+    "Pic3.jpg",
+    "Pic4.jpg",
+    "Pic5.jpg",
+    "Pic6.jpg",
+    "Pic7.jpg",
+    "Pic8.jpg",
+    "Pic9.jpg"
+];
+
+let index = 0;
+
+function start() {
+    document.getElementById("startScreen").classList.add("hidden");
+    document.getElementById("welcomeScreen").classList.remove("hidden");
+
+    setTimeout(() => {
+        document.getElementById("welcomeScreen").classList.add("hidden");
+        document.getElementById("slideshow").classList.remove("hidden");
+        showSlides();
+    }, 2500);
+}
+
+function showSlides() {
+    document.getElementById("photo").src = images[index];
+    index++;
+    if (index >= images.length) index = 0;
+    setTimeout(showSlides, 2000);
+}
+
+</script>
+
+</body>
+</html>
