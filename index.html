@@ -1,16 +1,15 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
 <title>Anshu ❤️ Akash</title>
 
 <style>
 body {
     margin: 0;
-    font-family: Arial;
     text-align: center;
     background: linear-gradient(to right, #ff9a9e, #fad0c4);
-    overflow: hidden;
+    font-family: Arial;
 }
 
 .center {
@@ -23,27 +22,30 @@ body {
 .heart {
     font-size: 90px;
     cursor: pointer;
-    animation: beat 1s infinite;
+    position: relative;
 }
 
-@keyframes beat {
-    0%,100% { transform: scale(1); }
-    50% { transform: scale(1.2); }
+.heart span {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
+    color: white;
+}
+
+.bigHeart {
+    font-size: 120px;
 }
 
 .hidden {
     display: none;
 }
 
-h1 {
-    color: white;
-}
-
-.slideshow img {
+img {
     width: 280px;
     height: 350px;
     border-radius: 15px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.3);
 }
 
 .caption {
@@ -56,54 +58,57 @@ h1 {
 
 <body>
 
-<div id="startScreen" class="center">
-    <div class="heart" onclick="start()">❤️</div>
-    <p style="color:white;">Click me</p>
+<!-- Screen 1 -->
+<div id="start" class="center">
+    <div class="heart" onclick="start()">
+        ❤️
+        <span>Click me</span>
+    </div>
 </div>
 
-<div id="welcomeScreen" class="center hidden">
-    <h1>anshu k dil me aapka swagat hai ❣️</h1>
+<!-- Screen 2 -->
+<div id="welcome" class="center hidden">
+    <div class="bigHeart">❤️</div>
+    <h2 style="color:white;">anshu ke dil me aapka swagat hai ❣️</h2>
 </div>
 
-<div id="slideshow" class="center hidden">
-    <img id="photo" src="">
-    <div class="caption">aree ye toh aap ho meri baby akash 😊</div>
+<!-- Screen 3 -->
+<div id="slide" class="center hidden">
+    <img id="img">
+    <div class="caption">aree ye toh aap ho mere baby 😊</div>
 </div>
 
 <script>
-
 let images = [
-    "Pic1.jpg",
-    "Pic2.jpg",
-    "Pic3.jpg",
-    "Pic4.jpg",
-    "Pic5.jpg",
-    "Pic6.jpg",
-    "Pic7.jpg",
-    "Pic8.jpg",
-    "Pic9.jpg"
+"Pic1.jpg",
+"Pic2.jpg",
+"Pic3.jpg",
+"Pic4.jpg",
+"Pic5.jpg",
+"Pic6.jpg",
+"Pic7.jpg",
+"Pic8.jpg",
+"Pic9.jpg"
 ];
 
-let index = 0;
+let i = 0;
 
 function start() {
-    document.getElementById("startScreen").classList.add("hidden");
-    document.getElementById("welcomeScreen").classList.remove("hidden");
+    document.getElementById("start").classList.add("hidden");
+    document.getElementById("welcome").classList.remove("hidden");
 
     setTimeout(() => {
-        document.getElementById("welcomeScreen").classList.add("hidden");
-        document.getElementById("slideshow").classList.remove("hidden");
-        showSlides();
+        document.getElementById("welcome").classList.add("hidden");
+        document.getElementById("slide").classList.remove("hidden");
+        show();
     }, 2500);
 }
 
-function showSlides() {
-    document.getElementById("photo").src = images[index];
-    index++;
-    if (index >= images.length) index = 0;
-    setTimeout(showSlides, 2000);
+function show() {
+    document.getElementById("img").src = images[i];
+    i = (i + 1) % images.length;
+    setTimeout(show, 2000);
 }
-
 </script>
 
 </body>
